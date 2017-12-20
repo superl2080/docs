@@ -126,9 +126,28 @@ express ##APP##
 cd ##APP#
 cnpm install
 ```
+* 制作PM2启动环境变量json文件：
+```
+{
+    "apps": [
+        {
+            "name": "##APPNAME##",
+            "script": "./bin/www",
+            "instances": "max",
+            "exec_mode": "cluster",
+            "env": {
+                "PORT": ##PORT##,
+                "MONGO_URL": "mongodb://localhost/##MONGODB##",
+                "##OTHER##": "##OTHER##",
+                "NODE_ENV": "development"
+            }
+        }
+    ]
+}
+```
 * 运行：
 ```
-pm2 start ./bin/www --name ##APPNAME##
+pm2 start ##PM2_JSON##
 ```
 * 重启：
 ```
