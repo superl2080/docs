@@ -153,3 +153,33 @@ pm2 start ##PM2_JSON##
 ```
 pm2 restart ##APPNAME##
 ```
+
+## 使用Github和subtree管理代码
+--------
+
+* 创建项目推送Github
+```
+mkdir ##PROJECT##
+cd ##PROJECT##
+git init
+git remote add ##REPO##
+git push
+```
+* 从Github复制项目
+```
+git clone ##REPO## ##PROJECT##
+git pull
+```
+* 创建subtree并提交文件（需使用没有的文件夹，可以创建后放入文件）
+```
+git remote add ##IMPORTS## ##IMPORTS_REPO##
+git subtree add --prefix=##IMPORTS## ##IMPORTS## master
+git commit -a -m ""
+git push
+git subtree push --prefix=##IMPORTS## ##IMPORTS## master
+```
+* 更新subtree
+```
+git subtree split --prefix=##IMPORTS## --rejoin
+git subtree pull --prefix=##IMPORTS## ##IMPORTS## master
+```
